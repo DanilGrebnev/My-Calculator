@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    .container{
+        margin: 0 auto;
+    }
+    input{
+        border: none;
+        width: 100%;
+        height: 60px;
+        font-size: 30px;
+        outline: none;
+        text-align: left;
+    }
+    .input{
+        grid-column: 1/-1;
+        padding: 0;
+    }
+    body{
+        user-select: none;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 4px;
+        padding: 4px;
+        border-radius: 5px;
+        max-width: 360px;
+        border: 2px solid black;
+
+    }
+    .item{
+        background: white;
+        border: 2px solid black;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        padding: 20px;
+        cursor: pointer;
+    }
+    form{
+        max-width: 100%;
+    }
+    .clear{
+        grid-column: 1/3;
+    }
+    .back{
+        grid-column: 3/-1;
+    }
+    .zero{
+    grid-column: 1/3;
+    }
+    .equal{
+        grid-column: 4;
+    grid-row: 6/8;
+        background: #dbdbdb;
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+<body>
+<div class="container">
+    <div class="item input">
+        <form action="" name="form">
+            <input type="text" value="" name="textview" readonly>
+        </form>
+    </div>
+    <div class="item clear" onclick="clean()">C</div>
+    <div class="item back" onclick="back()">&larr;</div>
+    <div class="item" onclick="insert('+')">+</div>
+    <div class="item" onclick="insert('-')">-</div>
+    <div class="item" onclick="insert('*')">&times;</div>
+    <div class="item" onclick="insert('/')">&divide;</div>
+    <div class="item" onclick="insert('7')">7</div>
+    <div class="item" onclick="insert('8')">8</div>
+    <div class="item" onclick="insert('9')">9</div>
+    <div class="item" onclick="insert('(')">(</div>
+    <div class="item" onclick="insert('4')">4</div>
+    <div class="item" onclick="insert('5')">5</div>
+    <div class="item" onclick="insert('6')">6</div>
+    <div class="item" onclick="insert(')')">)</div>
+    <div class="item" onclick="insert('1')">1</div>
+    <div class="item" onclick="insert('2')">2</div>
+    <div class="item" onclick="insert('3')">3</div>
+    <div class="item equal" onclick="equal()">=</div>
+    <div class="item zero" onclick="insert('0')">0</div>
+    <div class="item" onclick="insert('.')">.</div>
+</div>
+
+
+<script>
+    function insert(num){
+        document.form.textview.value = document.form.textview.value + num;
+    }
+    function clean(){
+        document.form.textview.value="";
+    }
+    function back(){
+        let exp = document.form.textview.value;
+        document.form.textview.value = exp.substring(0, exp.length-1);//возвращает подстроку без последнего символа.
+    }
+    function equal(){
+        let exp = document.form.textview.value;
+        if(exp){
+            document.form.textview.value = eval(exp);//Функция eval() принимает в себя строку из input. Это единственная функция которая так умеет.
+        }
+    }
+</script>
+</body>
+</html>
